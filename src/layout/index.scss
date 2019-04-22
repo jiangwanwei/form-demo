@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  min-height: 100%;
+}
+
+.left{
+  position: absolute;
+  width: 220px;
+  height: 100%;
+  color: #fff;
+  background: #333;
+
+  &.narrow {
+    width: 120px;
+  }
+}
+
+.right {
+  margin-left: 220px;
+  &.narrow {
+    margin-left: 120px;
+  }
+}
