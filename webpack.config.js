@@ -69,7 +69,7 @@ module.exports = {
     new WebpackHTMLPlugin({
       template: './src/index.html',
       filename: './index.html',
-      inject: true
+      inject: true,
     }),
 
     new webpack.HotModuleReplacementPlugin(),
