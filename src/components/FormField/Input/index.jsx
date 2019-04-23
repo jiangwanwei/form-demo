@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 
 import FormValidation from 'utils/formValidation';
 
@@ -23,7 +22,6 @@ export default class Input extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.validate = this.validate.bind(this);
-    this.setRules = this.setRules.bind(this);
   }
 
   componentDidMount() {
@@ -36,9 +34,6 @@ export default class Input extends Component {
     if (nextProps.defaultValue != 'undefined' && nextProps.defaultValue !== this.props.defaultValue) {
       this.setValue(nextProps.defaultValue);
     }
-    // if (nextProps.value !== this.getValue()) {
-    //   this.setValue(nextProps.value)
-    // }
   }
 
   validate() {
@@ -54,16 +49,11 @@ export default class Input extends Component {
   }
 
   getValue() {
-    return findDOMNode(this.refs.input).value.trim();
+    return this.input.value.trim();
   }
 
-  setValue(val) {
-    findDOMNode(this.refs.input).value = val;
-  }
-
-  setRules(rules) {
-    this.state.rules = rules;
-    this.setState({});
+  setValue(value) {
+    this.input.value = value
   }
 
   focus() {
@@ -97,7 +87,7 @@ export default class Input extends Component {
     return (
       <div
         styleName={inputClass}
-        onClick={e => this.refs.input.focus()}
+        onClick={e => this.input.focus()}
         style={{ height: styleHeight }}
       >
         {unit &&
@@ -122,7 +112,7 @@ export default class Input extends Component {
 
         {inputType !== 'textarea' && type !== 'textarea' && !hidden &&
         <input
-          ref="input"
+          ref={e => this.input = e}
           className='input'
           styleName={unitLeft ? 'input-with-left' : ( unit && !noUnitPadding ? 'input-with-right' : '')}
           name={inputName}
@@ -143,7 +133,7 @@ export default class Input extends Component {
         {(inputType === 'textarea' || type === 'textarea') && !hidden &&
         <textarea
           style={{ resize: 'none' }}
-          ref="input"
+          ref={e => this.input = e }
           className='input'
           name={inputName}
           id={inputName}
@@ -155,7 +145,7 @@ export default class Input extends Component {
           onBlur={this.handleBlur}
           onChange={this.handleChange}
           defaultValue={defaultValue}
-        ></textarea>
+        />
         }
 
         {hidden &&
@@ -199,17 +189,15 @@ export default class Input extends Component {
     this.props.onChange && this.props.onChange(this.getValue(), e);
   }
 
-  // limit number only input (remove other characters)
-  // if rules container "numberInput"
   numberInputFilter() {
     const rules = this.state.rules || this.props.rules;
 
     if (!rules) return;
-    if (rules && (rules.indexOf('numberInput') === -1 && rules.indexOf('intInput') === -1)) return;
+    if (rules && (rules.indexOf('number') === -1 && rules.indexOf('int') === -1)) return;
 
     const value = this.getValue();
     let newValue;
-    if (rules.indexOf('numberInput') !== -1) {
+    if (rules.indexOf('number') !== -1) {
       newValue = FormValidation.filterNotNumber(value);
     } else {
       newValue = FormValidation.filterNotInt(value);

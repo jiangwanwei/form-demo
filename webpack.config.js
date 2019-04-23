@@ -22,6 +22,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: '//localhost:3000/',
     filename: 'bundle.js',
+    chunkFilename: '[name].js',
     crossOriginLoading: 'anonymous',
   },
 

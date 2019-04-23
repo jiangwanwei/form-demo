@@ -6,7 +6,7 @@
         "type": "text",
         "specification": {
           "min_length": 5,
-          "max_length": 300,
+          "max_length": 10,
           "required": true
         }
       },
@@ -35,10 +35,53 @@
         }
       },
       "prize_amount": {
-        "type": "number",
+        "type": "textarea",
         "specification": {
-          "min": 1,
-          "max": 100,
+          "min_length": 20,
+          "max_length": 200,
+          "required": true
+        }
+      },
+      "date": {
+        "type": "date",
+        "specification": {
+          "required": true
+        }
+      }
+    }
+  },
+  {
+    "id": "1111112",
+    "attributes": {
+      "start_time": {
+        "type": "text",
+        "specification": {
+          "min_length": 5,
+          "max_length": 10,
+          "required": true
+        }
+      },
+      "end_time": {
+        "type": "text",
+        "specification": {
+          "min_length": 5,
+          "max_length": 300,
+          "required": true
+        }
+      },
+      "finish_time": {
+        "type": "text",
+        "specification": {
+          "min_length": 5,
+          "max_length": 300,
+          "required": true
+        }
+      },
+      "description": {
+        "type": "text",
+        "specification": {
+          "min_length": 5,
+          "max_length": 300,
           "required": true
         }
       },

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import IconButton from 'com/IconButton'
+import IconButton from 'com/Button'
 import CSSModules from 'react-css-modules'
 import styles from './nav.scss'
 

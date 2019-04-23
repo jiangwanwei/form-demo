@@ -1,95 +1,51 @@
-'use strict';
-
 import React from 'react'
-import FormItem from 'com/FormItem/index'
+import FormItem from 'com/FormItem'
+import FormFiled from 'com/FormField'
+import Button from 'com/Button'
 import data from '../../data/index.json'
-// const data = require('json-loader!../../data/index.json')
-import Input from 'com/FormComponents/Input'
-import Datepicker from 'com/FormComponents/DatePicker/index'
 
+import CSSModules from 'react-css-modules'
+import styles from './index.scss'
+
+@CSSModules(styles)
 export default class Form extends React.Component {
-  convertRules = (specification) => {
-    const rules = []
-    const rulesMap = {
-      required: {
-        str: 'required'
-      },
-      number: {
-        str: 'number',
-      },
-      min_length: {
-        str: 'minLength:',
-        mixValue: true,
-      },
-      max_length: {
-        str: 'maxLength:',
-        mixValue: true,
-      },
-      min: {
-        str: 'minValue:',
-        mixValue: true,
-      },
-      max: {
-        str: 'maxValue:',
-        mixValue: true,
-      },
-    }
-    Object.keys(specification).map(key => {
-      let rule = rulesMap[key].str
-      rule += rulesMap[key].mixValue ? specification[key] : ''
-      rules.push(rule)
-    })
-    return rules
-  }
-
-  generateFiled = (item) => {
-    // import(item.type).then((Component) => <Component rules={item.specification}>)
-
-    if (item.type === 'text') {
-      return this.generateText(item)
-    }
-    if (item.type === 'number') {
-      item.specification = Object.assign({ number: 'number' }, item.specification)
-      return this.generateText(item)
-    }
-    if (item.type === 'date') {
-      return this.generateDate(item)
-    }
-  }
-
-  generateText = (item) => {
-    const rules = this.convertRules(item.specification)
-    return (
-      <Input rules={rules} />
-    )
-  }
-
-  generateDate = (item) => {
-    const rules = this.convertRules(item.specification)
-    return (
-      <Datepicker rules={rules} />
-    )
-  }
-
   render() {
     return (
-      <div className="box">
-        <div className="clearfix">
-          {data.map((item) => (
-            <div key={item.id}>
-              {Object.keys(item.attributes).map((key, idx) => (
-                <FormItem
-                  key={key}
-                  title={key}
-                  required={item.attributes[key].specification.required}
-                >
-                  {this.generateFiled(item.attributes[key])}
-                </FormItem>
-              ))}
-            </div>
-          ))}
-        </div>
+      <div>
+        {data.map((item) => (
+          <div key={item.id} className="clearfix box">
+            <div className="filter-form-title">Form: {item.id}</div>
+            {Object.keys(item.attributes).map((key, idx) => (
+              <FormItem
+                key={key}
+                title={key}
+                required={item.attributes[key].specification.required}
+              >
+                <FormFiled
+                  data={item.attributes[key]}
+                />
+              </FormItem>
+            ))}
+          </div>
+        ))}
 
+        <div styleName="button-container">
+          <div styleName="button-wrapper">
+            <Button
+              styleClass="button-full"
+            >
+              保存
+            </Button>
+          </div>
+
+          <div styleName="button-wrapper">
+            <Button
+              styleClass="button-full button-outline"
+            >
+              取消
+            </Button>
+          </div>
+        </div>
       </div>
     )
   }

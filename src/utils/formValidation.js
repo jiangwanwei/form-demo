@@ -21,13 +21,13 @@ class Validation {
           return { validated: false, msg: '必须为数字' }
         }
       }
-      if (value && item === 'isMobile') {
+      if (value && item === 'mobile') {
         if (!this.isMobile(value)) {
           return { validated: false, msg: '电话输入格式不正确' }
         }
       }
 
-      if (value && item === 'positiveNumber') {
+      if (value && item === 'positive_number') {
         if (!this.positiveNumber(value)) {
           return { validated: false, msg: '必须为正数' }
         }
@@ -39,13 +39,13 @@ class Validation {
         }
       }
 
-      if (value && item === 'notNegative') {
+      if (value && item === 'not_negative') {
         if (!this.notNegative(value)) {
           return { validated: false, msg: '不能为负数' }
         }
       }
 
-      if (value && item.indexOf('minValue') !== -1) {
+      if (value && item.indexOf('min:') !== -1) {
         const splits = item.split(':')
         const minValue = +splits[1]
         if (!this.minValue(value, minValue)) {
@@ -56,7 +56,7 @@ class Validation {
         }
       }
 
-      if (value && item.indexOf('maxValue') !== -1) {
+      if (value && item.indexOf('max:') !== -1) {
         const splits = item.split(':')
         const maxValue = +splits[1]
         if (!this.maxValue(value, maxValue)) {
@@ -67,7 +67,7 @@ class Validation {
         }
       }
 
-      if (value && item.indexOf('maxValueNotEquate') !== -1) {
+      if (item.indexOf('max_not_equate') !== -1 && value) {
         const splits = item.split(':')
         const maxValue = +splits[1]
         if (!this.maxValueNotEquate(value, maxValue)) {
@@ -78,60 +78,55 @@ class Validation {
         }
       }
 
-
-      if (item === 'int') {
-        if (value && !this.isInt(value)) {
+      if (item === 'int' && value) {
+        if (!this.isInt(value)) {
           return { validated: false, msg: '必须为整数' }
         }
       }
-      if (item === 'emailSuffix') {
-        if (item === 'required' || value !== '') {
-          if (!this.isMatchEmailSuffix(value)) {
-            return { validated: false, msg: 'email后缀不符合' }
-          }
+      if (item === 'email_suffix' && value) {
+        if (!this.isMatchEmailSuffix(value)) {
+          return { validated: false, msg: 'email后缀不符合' }
         }
       }
-      if (item === ('email')) {
-        if (item === 'required'|| value !== '') {
-          if (!this.isMatchEmail(value)) {
-            return { validated: false, msg: 'email输入不正确' }
-          }
+      if (item === 'email' && value) {
+        if (!this.isMatchEmail(value)) {
+          return { validated: false, msg: 'email输入不正确' }
         }
       }
-      if (item.indexOf('passwordRequired') !== -1) {
+      if (item === 'password' && value) {
         if (!this.isPassword(value)) {
           return { validated: false, msg: '请输入密码' }
         }
       }
-      if (item.indexOf('cardNumber') !== -1) {
-        if (!this.isCardNumber(value)) {
+      if (item === 'id_card' && value ) {
+        if (!this.isIdCard(value)) {
           return { validated: false, msg: '身份证不符合' }
         }
       }
-      if (item.indexOf('username') !== -1) {
+      if (item === 'username' && value) {
         if (!this.isUsername(value)) {
           return { validated: false, msg: '请输入用户名' }
         }
       }
-      if (item.indexOf('minLength:') !== -1) {
+      if (item.indexOf('min_length:') !== -1 && value) {
         const length = item.split(':')
         if (!this.minLength(value, length[1])) {
           return { validated: false, msg: '长度不小于: ' + length[1] }
         }
       }
-      if (item.indexOf('maxLength:') !== -1) {
+      if (item.indexOf('max_length:') !== -1 && value) {
         const length = item.split(':')
         if (!this.maxLength(value, length[1])) {
           return { validated: false, msg: '长度不大于: ' + length[1] }
         }
       }
-      if (item.indexOf('length:') !== -1) {
+      if (item.indexOf('length:') !== -1 && item.indexOf('min_length:') === -1 && item.indexOf('max_length:') === -1  && value) {
         const length = item.split(':')
         if (value.length !== parseInt(length[1])) {
           return { validated: false, msg: '长度必须为: ' + length[1] }
         }
       }
-      if (item.indexOf('isCurrency') !== -1) {
+      if (item === 'currency' && value) {
         if (!this.isCurrency(value)) {
           return {
             validated: false, msg: '必须为货币格式'
@@ -156,7 +151,6 @@ class Validation {
     return true
   }
 
-
   isNumber(value) {
     const numberValue = parseFloat(value)
     return numberValue == value
@@ -179,11 +173,6 @@ class Validation {
     return /^(\d+(\.\d\d?)?)?$/.test(value)
   }
 
-  // isPassword(str = '') {
-  //   const reg = /^(?:(?=.*\d)(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[^A-Za-z0-9])(?=.*[a-z])|(?=.*[^A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])|(?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9]))(?!.*(.)\1{2,})[A-Za-z0-9!~<>,;:_=?*+#."&§%°()\|\[\]\-\$\^\@\/]{8,32}$/
-  //   return reg.test(str)
-  // }
-
   isPassword(str = '') {
     const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9\S]{10,32}$/
     return reg.test(str)
@@ -202,7 +191,7 @@ class Validation {
     return result && !reg1.test(str)
   }
 
-  isCardNumber(str = '') {
+  isIdCard(str = '') {
     const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
     return reg.test(str)
   }
