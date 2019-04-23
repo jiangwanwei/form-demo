@@ -17,7 +17,7 @@
 
 ------------------------------------------------
 控件规则（form validation）- "specification":
-[
+{
 - required: BOOLEAN,
 - id_card: BOOLEAN,         // 身份证号码
 - username: BOOLEAN,        // 用户名规则
@@ -34,5 +34,5 @@
 - min_length: NUMBER,       // 最小长度
 - max_length: NUMBER,       // 最大长度
 - length: NUMBER,           // 长度匹配
-]
+}
 
