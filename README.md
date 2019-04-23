@@ -1,9 +1,10 @@
 # form-demo
 
-已更新，git pull以后，执行npm install一下然后npm run
+已更新，git pull以后，执行npm install一下然后npm start
 
 - components/FormField/组件目录
-- components/FormField/fieldMap.jsx  // 新增组件维护一下组件映射 map
+- components/FormField/fieldMap.jsx  // 新增组件维护一下组件映射 type -> FieldComponent 的 map
+- components/FormField/ExampleFieldComponent.jsx  // field样本组件, 提供公共方法getValue 和 validate
 
 
 ## 数据说明(目前支持)
