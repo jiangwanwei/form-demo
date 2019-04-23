@@ -15,6 +15,7 @@ export default class Form extends React.Component {
         {data.map((item) => (
           <div key={item.id} className="clearfix box">
             <div className="filter-form-title">Form: {item.id}</div>
+
             {Object.keys(item.attributes).map((key, idx) => (
               <FormItem
                 key={key}
@@ -31,19 +32,10 @@ export default class Form extends React.Component {
 
         <div styleName="button-container">
           <div styleName="button-wrapper">
-            <Button
-              styleClass="button-full"
-            >
-              保存
-            </Button>
+            <Button styleClass="button-full">保存</Button>
           </div>
-
           <div styleName="button-wrapper">
-            <Button
-              styleClass="button-full button-outline"
-            >
-              取消
-            </Button>
+            <Button styleClass="button-full button-outline">取消</Button>
           </div>
         </div>
       </div>
