@@ -26,7 +26,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: '//localhost:3000/',
     filename: 'js/[name].bundle.[chunkhash:8].js',
-    chunkFilename: 'js/[name].[chunkhash:8].js',
+    chunkFilename: 'js/field_[name].[chunkhash:8].js',
     crossOriginLoading: 'anonymous',
   },
 
