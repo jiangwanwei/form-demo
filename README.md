@@ -6,19 +6,19 @@
 - components/FormField/fieldMap.jsx  // 新增组件维护一下组件映射 map
 
 
-
+## 数据说明(目前支持)
 /**
  * ------------------------------------------------
- * 控件类型
- * [
+ * 控件类型 - "type":
+ *
  *    number,
  *    text,
  *    textarea,
  *    date
- * ]
+ *
  *
  * ------------------------------------------------
- * specification - 控件规则（form validation）:
+ * 控件规则（form validation）- "specification":
  * [
  *    required: BOOLEAN,
  *    id_card: BOOLEAN,         // 身份证号码
