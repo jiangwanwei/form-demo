@@ -1,6 +1,9 @@
+'use strict';
+
 import React from 'react'
 import FormItem from 'com/FormItem/index'
 import data from '../../data/index.json'
+// const data = require('json-loader!../../data/index.json')
 import Input from 'com/Input'
 import Datepicker from 'com/DatePicker/index'
 
@@ -40,6 +43,8 @@ export default class Form extends React.Component {
   }
 
   generateFiled = (item) => {
+    // import(item.type).then((Component) => <Component rules={item.specification}>)
+
     if (item.type === 'text') {
       return this.generateText(item)
     }

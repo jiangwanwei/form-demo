@@ -18,11 +18,6 @@ export default class Nav extends React.Component {
       <div>
         <div styleName="logo-container">
           <div styleName={`logo ${menuNarrow ? 'narrow' : ''}`}>DEMO</div>
-          <IconButton
-            className="fa fa-bars menu-narrow-icon"
-            title={menuNarrow ? '展开' : '折叠'}
-            onClick={e => toggleMenu(!menuNarrow)}
-          />
         </div>
         <ul styleName={`nav ${menuNarrow ? 'narrow' : ''}`}>
           <li><a href="/" styleName="active">Form Validation</a></li>
