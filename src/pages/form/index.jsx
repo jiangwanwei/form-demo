@@ -4,8 +4,8 @@ import React from 'react'
 import FormItem from 'com/FormItem/index'
 import data from '../../data/index.json'
 // const data = require('json-loader!../../data/index.json')
-import Input from 'com/Input'
-import Datepicker from 'com/DatePicker/index'
+import Input from 'com/FormComponents/Input'
+import Datepicker from 'com/FormComponents/DatePicker/index'
 
 export default class Form extends React.Component {
   convertRules = (specification) => {

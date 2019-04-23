@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --history-api-fallback --inline"
+    "start": "webpack-dev-server --history-api-fallback --inline",
+    "build": "webpack --config webpack.build.js"
   },
   "repository": {
     "type": "git",

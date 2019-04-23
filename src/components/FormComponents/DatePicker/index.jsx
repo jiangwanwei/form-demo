@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom'
 import Picker from 'react-datepicker'
 import moment from 'moment'
 import FormValidation from 'utils/formValidation'
-import '../../assets/scss/datepicker.scss'
+import 'assets/scss/datepicker.scss'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.scss'

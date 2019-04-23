@@ -2,7 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 
-import './assets/scss/global.scss';
+import './assets/scss/global.scss'
 
 import Layout from './layout'
 import Form from './pages/form'
